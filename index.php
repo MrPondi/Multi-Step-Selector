@@ -1,4 +1,6 @@
 <?php
+// Multiple answer protection
+session_start();
 // Output messages
 $response = '';
 // Check if the form was submitted
@@ -9,10 +11,10 @@ if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], 
     include_once 'assets/dbh.inc.php';
     // Assign POST variables
     $dane = mysqli_real_escape_string($conn, $_POST['dane']);
-    $klasa = $_POST['klasa'];
-    $sroda = $_POST['sroda'];
-    $czwartek = $_POST['czwartek'];
-    $piatek = $_POST['piatek'];
+    $klasa = mysqli_real_escape_string($conn, $_POST['klasa']);
+    $sroda = mysqli_real_escape_string($conn, $_POST['sroda']);
+    $czwartek = mysqli_real_escape_string($conn, $_POST['czwartek']);
+    $piatek = mysqli_real_escape_string($conn, $_POST['piatek']);
     // Get the database entries for the selected activities
     $querySr = mysqli_query($conn, "SELECT * FROM rekolekcje WHERE sroda='$sroda';");
     $queryCzw = mysqli_query($conn, "SELECT * FROM rekolekcje WHERE czwartek='$czwartek';");
@@ -54,9 +56,13 @@ if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], 
      }
 
     // Set the mysql insert query
-    if (empty($response)) {
+    if (empty($response) && !isset($_SESSION['submited'])) {
         mysqli_query($conn, "INSERT INTO rekolekcje (dane, klasa, sroda, czwartek, piatek) VALUES ('$dane', '$klasa', '$sroda', '$czwartek', '$piatek');");
         $response = '<h3>Dziękujemy!</h3><p>Twoje opcje zostały poprawie zapisane.</p>';
+        session_unset();
+        session_destroy();
+        session_start();
+        $_SESSION['submited'] = true;
     }
 }
 ?>
@@ -211,6 +217,7 @@ if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], 
 
             <!-- page 5 -->
             <div class="step-content" data-step="5">
+                <?php if (isset($_SESSION['submited'])) { $response = '<h3>Dziękujemy!</h3><p>Twoje opcje zostały poprawie zapisane.</p>'; } ?>
                 <div class="result"><?=$response?></div>
             </div>
         </form>
@@ -229,7 +236,7 @@ if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], 
                 setStep(parseInt(element.dataset.setStep));
             };
         });
-        <?php if (!empty($_POST)): ?>
+        <?php if (!empty($_POST) || isset($_SESSION['submited'])): ?>
         setStep(5);
         <?php endif; ?>
         </script>
