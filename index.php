@@ -4,22 +4,59 @@ $response = '';
 // Check if the form was submitted
 if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], $_POST['piatek'])) {
     // Process form data 
+    // Get the max number of people per activity amd database crenedrials
+    include 'assets/maxactivity.inc.php';
+    include_once 'assets/dbh.inc.php';
     // Assign POST variables
-    $dane = $_POST['dane'];
+    $dane = mysqli_real_escape_string($conn, $_POST['dane']);
     $klasa = $_POST['klasa'];
     $sroda = $_POST['sroda'];
     $czwartek = $_POST['czwartek'];
     $piatek = $_POST['piatek'];
-    // Get the database credentials
-    include_once 'assets/dbh.inc.php';
-    $sql = "INSERT INTO rekolekcje (dane, klasa, sroda, czwartek, piatek) VALUES ('$dane', '$klasa', '$sroda', '$czwartek', '$piatek');";
-    // Try to send the data
-    if (mysqli_query($conn, $sql)) {
-        // Success
-        $response = '<h3>Dziękujemy!</h3><p>Twoje opcje zostały poprawie zapisane.</p>';		
-    } else {
-        // Fail
-        $response = '<h3>Error!</h3><p>Wystąpił nieoczekiwany problem, Skonsultuj się z administratorem!</a>';
+    // Get the database entries for the selected activities
+    $querySr = mysqli_query($conn, "SELECT * FROM rekolekcje WHERE sroda='$sroda';");
+    $queryCzw = mysqli_query($conn, "SELECT * FROM rekolekcje WHERE czwartek='$czwartek';");
+    $queryPt = mysqli_query($conn, "SELECT * FROM rekolekcje WHERE piatek='$piatek';");
+    // Check if the number of rows
+    $CheckSr = mysqli_num_rows($querySr);
+    $CheckCzw = mysqli_num_rows($queryCzw);
+    $CheckPt= mysqli_num_rows($queryPt);
+    // Set count variables to prevent Undefined variable error
+    $countSr = 1;
+    $countCzw = 1;
+    $countPt = 1;
+
+    // Get the current number of people in a activity
+     if ($CheckSr > 0) {
+        while ($row = mysqli_fetch_assoc($querySr)) {
+        $countSr += 1;
+        }
+     }
+     if ($CheckCzw > 0) {
+        while ($row = mysqli_fetch_assoc($queryCzw)) {
+        $countCzw += 1;
+        }
+     }
+     if ($CheckPt > 0) {
+        while ($row = mysqli_fetch_assoc($queryPt)) {
+        $countPt += 1;
+        }
+     }
+     // Check if its full
+     if ($countSr > $maxSroda[$sroda]) {
+        $response = '<h3>Za późno!</h3><p>Wybrane środowe zajęcie jest pełne, wybierz inne!</a>';
+     }
+     if ($countCzw > $maxCzwartek[$czwartek]) {
+        $response = '<h3>Za późno!</h3><p>Wybrane czwartkowe zajęcie jest pełne, wybierz inne!</a>';
+     }
+     if ($countPt > $maxPiatek[$piatek]) {
+        $response = '<h3>Za późno!</h3><p>Wybrane piątkowe zajęcie jest pełne, wybierz inne!</a>';
+     }
+
+    // Set the mysql insert query
+    if (empty($response)) {
+        mysqli_query($conn, "INSERT INTO rekolekcje (dane, klasa, sroda, czwartek, piatek) VALUES ('$dane', '$klasa', '$sroda', '$czwartek', '$piatek');");
+        $response = '<h3>Dziękujemy!</h3><p>Twoje opcje zostały poprawie zapisane.</p>';
     }
 }
 ?>
