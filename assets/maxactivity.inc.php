@@ -1,27 +1,35 @@
 <?php
 $maxSroda = array (
-'wyklad 1' => 5,
-'wyklad 2' => 5,
-'wyklad 3' => 5,
-'wyklad 4' => 5,
-'wyklad 5' => 5,
-'wyklad 6' => 5,
+'sr1' => 999999999,
+'sr2' => 50,
+'sr3' => 30,
+'sr4' => 30,
+'sr5' => 35,
+'sr6' => 20,
+'sr7' => 999999999, //  ???
+'sr8' => 150,
+'sr9' => 60,
 );
 
 $maxCzwartek = array (
-'wyklad 1' => 5,
-'wyklad 2' => 5,
-'wyklad 3' => 5,
-'wyklad 4' => 5,
-'wyklad 5' => 5,
-'wyklad 6' => 5,
+'czw1' => 50,
+'czw2' => 150,
+'czw3' => 50,
+'czw4' => 200,
+'czw5' => 25,
+'czw6' => 35,
+'czw7' => 12,
+'czw8' => 30,
+'czw9' => 60,
 );
 
 $maxPiatek = array (
-'wyklad 1' => 5,
-'wyklad 2' => 5,
-'wyklad 3' => 5,
-'wyklad 4' => 5,
-'wyklad 5' => 5,
-'wyklad 6' => 5,
+'pt1' => 999999999,
+'pt2' => 150,
+'pt3' => 50,
+'pt4' => 30,
+'pt5' => 35,
+'pt6' => 20,
+'pt7' => 150,
+'pt8' => 60,
 );
