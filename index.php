@@ -135,11 +135,15 @@ if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], 
                         </label>
                         <label for="sroda8">
                             <input type="radio" name="sroda" id="sroda8" value="sr8" required>
-                            Wyjście do kina Rialto – grupa filmowa
+                            Stowarzyszenie Młodych Twórców – spotkanie
                         </label>
                         <label for="sroda9">
                             <input type="radio" name="sroda" id="sroda9" value="sr9" required>
                             Prelekcja o bezpieczeństwie – policja
+                        </label>
+                        <label for="sroda10">
+                            <input type="radio" name="sroda" id="sroda10" value="sr10" required>
+                            Wyjście do kina Rialto – grupa filmowa
                         </label>
                     </div>
                 </div>
@@ -204,7 +208,7 @@ if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], 
                     <div class="group">
                         <label for="piatek1">
                             <input type="radio" name="piatek" id="piatek1" value="pt1" required>
-                            <b style="color:blue;">Religijne&nbsp;-&nbsp;</b>Msza św. z nauką rekolekcyjną - krypta katedry
+                            <b style="color:blue;">Religijne&nbsp;-&nbsp;</b>Droga Krzyżowa i okazja do spowiedzi - krypta katedry
                         </label>
                         <label for="piatek2">
                             <input type="radio" name="piatek" id="piatek2" value="pt2" required>
@@ -216,7 +220,7 @@ if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], 
                         </label>
                         <label for="piatek4">
                             <input type="radio" name="piatek" id="piatek4" value="pt4" required>
-                            Komandosi Powstania Styczniowego „Żuawi Śmierci” – wykład historyczny
+                            Komandosi Powstania Styczniowego – wykład historyczny
                         </label>
                         <label for="piatek5">
                             <input type="radio" name="piatek" id="piatek5" value="pt5" required>
@@ -228,10 +232,14 @@ if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], 
                         </label>
                         <label for="piatek7">
                             <input type="radio" name="piatek" id="piatek7" value="pt7" required>
-                            Wyjście do kina Rialto – grupa filmowa
+                            Wyjście historyczne - Śląskie Centrum Wolności i Solidarności
                         </label>
                         <label for="piatek8">
                             <input type="radio" name="piatek" id="piatek8" value="pt8" required>
+                            Stowarzyszenie Młodych Twórców – spotkanie
+                        </label>
+                        <label for="piatek9">
+                            <input type="radio" name="piatek" id="piatek9" value="pt9" required>
                             Prelekcja o bezpieczeństwie – policja
                         </label>
                     </div>
