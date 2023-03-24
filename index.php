@@ -137,10 +137,6 @@ if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], 
                             <input type="radio" name="sroda" id="sroda8" value="sr8" required>
                             Stowarzyszenie Młodych Twórców – spotkanie
                         </label>
-                        <label for="sroda9">
-                            <input type="radio" name="sroda" id="sroda9" value="sr9" required>
-                            Prelekcja o bezpieczeństwie – policja
-                        </label>
                         <label for="sroda10">
                             <input type="radio" name="sroda" id="sroda10" value="sr10" required>
                             Wyjście do kina Rialto – grupa filmowa
@@ -188,10 +184,6 @@ if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], 
                         <label for="czwartek8">
                             <input type="radio" name="czwartek" id="czwartek8" value="czw8" required>
                             Afganistan – spotkanie z weteranem wojny
-                        </label>
-                        <label for="czwartek9">
-                            <input type="radio" name="czwartek" id="czwartek9" value="czw9" required>
-                            Prelekcja o bezpieczeństwie – policja
                         </label>
                     </div>
                 </div>
