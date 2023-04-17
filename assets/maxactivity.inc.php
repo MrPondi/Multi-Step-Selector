@@ -9,6 +9,7 @@ $maxSroda = array (
 'sr7' => 25,
 'sr8' => 12,
 'sr9' => 60,
+'sr10' => 150,
 );
 
 $maxCzwartek = array (
@@ -19,7 +20,7 @@ $maxCzwartek = array (
 'czw5' => 25,
 'czw6' => 35,
 'czw7' => 12,
-'czw8' => 30,
+'czw8' => 40,
 'czw9' => 60,
 );
 
@@ -33,4 +34,5 @@ $maxPiatek = array (
 'pt7' => 25,
 'pt8' => 12,
 'pt9' => 120,
+'pt9' => 60,
 );

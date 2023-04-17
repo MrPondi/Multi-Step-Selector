@@ -149,11 +149,11 @@ if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], 
                         </label>
                         <label for="sroda8">
                             <input type="radio" name="sroda" id="sroda8" value="sr8" <?php DisabledCheck($conn, $maxSroda, 'sroda', 'sr8')?>required>
-                            Wyjście do kina Rialto – grupa filmowa
+                            Stowarzyszenie Młodych Twórców – spotkanie
                         </label>
                         <label for="sroda9">
                             <input type="radio" name="sroda" id="sroda9" value="sr9" <?php DisabledCheck($conn, $maxSroda, 'sroda', 'sr9')?>required>
-                            Prelekcja o bezpieczeństwie – policja
+                            Wyjście do kina Rialto – grupa filmowa
                         </label>
                     </div>
                 </div>
@@ -230,7 +230,7 @@ if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], 
                         </label>
                         <label for="piatek4">
                             <input type="radio" name="piatek" id="piatek4" value="pt4" <?php DisabledCheck($conn, $maxPiatek, 'sroda', 'pt4')?>required>
-                            Komandosi Powstania Styczniowego „Żuawi Śmierci” – wykład historyczny
+                            Komandosi Powstania Styczniowego – wykład historyczny
                         </label>
                         <label for="piatek5">
                             <input type="radio" name="piatek" id="piatek5" value="pt5" <?php DisabledCheck($conn, $maxPiatek, 'sroda', 'pt5')?>required>
@@ -242,7 +242,7 @@ if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], 
                         </label>
                         <label for="piatek7">
                             <input type="radio" name="piatek" id="piatek7" value="pt7" <?php DisabledCheck($conn, $maxPiatek, 'sroda', 'pt7')?>required>
-                            Wyjście do kina Rialto – grupa filmowa
+                            Wyjście historyczne - Śląskie Centrum Wolności i Solidarności
                         </label>
                         <label for="piatek8">
                             <input type="radio" name="piatek" id="piatek8" value="pt8" <?php DisabledCheck($conn, $maxPiatek, 'sroda', 'pt8')?>required>
