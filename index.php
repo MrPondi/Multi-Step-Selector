@@ -1,14 +1,28 @@
 <?php
+
+function DisabledCheck($conn, $max, $weekday, $number) {
+    $query = mysqli_query($conn, "SELECT * FROM rekolekcje WHERE $weekday='$number';");
+    $Check = mysqli_num_rows($query);
+    $count = 1;
+    if ($Check > 0) {
+        while ($row = mysqli_fetch_assoc($query)) {
+        $count += 1;
+        }
+    }
+    if ($count > $max[$number]) {
+        echo("disabled=true");
+    }
+}
 // Multiple answer protection
 session_start();
 // Output messages
 $response = '';
+// Get the max number of people per activity amd database crenedrials
+include 'assets/maxactivity.inc.php';
+include 'assets/dbh.inc.php';
 // Check if the form was submitted
 if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], $_POST['piatek'])) {
     // Process form data 
-    // Get the max number of people per activity amd database crenedrials
-    include 'assets/maxactivity.inc.php';
-    include_once 'assets/dbh.inc.php';
     $date = date("Y-m-d H-i-s");
     // Assign POST variables
     $dane = mysqli_real_escape_string($conn, $_POST['dane']);
@@ -106,39 +120,39 @@ if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], 
                     <p>Na jaki wykład chciałbyś pójść w Środę?</p>
                     <div class="group">
                         <label for="sroda1">
-                            <input type="radio" name="sroda" id="sroda1" value="sr1" required>
+                            <input type="radio" name="sroda" id="sroda1" value="sr1" <?php DisabledCheck($conn, $maxSroda, 'sroda', 'sr1')?> required="">
                             <b style="color:blue;">Religijne&nbsp;-&nbsp;</b>Rozpoczęcie rekolekcji - nauka rekolekcyjna w Katedrze
                         </label>
                         <label for="sroda2">
-                            <input type="radio" name="sroda" id="sroda2" value="sr2" required>
+                            <input type="radio" name="sroda" id="sroda2" value="sr2" <?php DisabledCheck($conn, $maxSroda, 'sroda', 'sr2')?>required>
                             Warsztaty medialne - Radio Em
                         </label>
                         <label for="sroda3">
-                            <input type="radio" name="sroda" id="sroda3" value="sr3" required>
+                            <input type="radio" name="sroda" id="sroda3" value="sr3" <?php DisabledCheck($conn, $maxSroda, 'sroda', 'sr3')?>required>
                             Relacje chrześcijańsko-żydowskie w Polsce – wykład
                         </label>
                         <label for="sroda4">
-                            <input type="radio" name="sroda" id="sroda4" value="sr4" required>
+                            <input type="radio" name="sroda" id="sroda4" value="sr4" <?php DisabledCheck($conn, $maxSroda, 'sroda', 'sr4')?>required>
                             Warsztaty taneczne
                         </label>
                         <label for="sroda5">
-                            <input type="radio" name="sroda" id="sroda5" value="sr5" required>
+                            <input type="radio" name="sroda" id="sroda5" value="sr5" <?php DisabledCheck($conn, $maxSroda, 'sroda', 'sr5')?>required>
                             Rozgrywki sportowe – sala gimnastyczna i sala fitness
                         </label>
                         <label for="sroda6">
-                            <input type="radio" name="sroda" id="sroda6" value="sr6" required>
+                            <input type="radio" name="sroda" id="sroda6" value="sr6" <?php DisabledCheck($conn, $maxSroda, 'sroda', 'sr6')?>required>
                             Warsztaty dziennikarskie
                         </label>
                         <label for="sroda7">
-                            <input type="radio" name="sroda" id="sroda7" value="sr7" required>
+                            <input type="radio" name="sroda" id="sroda7" value="sr7" <?php DisabledCheck($conn, $maxSroda, 'sroda', 'sr7')?>required>
                             Wyjście historyczne - Śląskie Centrum Wolności i Solidarności
                         </label>
                         <label for="sroda8">
-                            <input type="radio" name="sroda" id="sroda8" value="sr8" required>
+                            <input type="radio" name="sroda" id="sroda8" value="sr8" <?php DisabledCheck($conn, $maxSroda, 'sroda', 'sr8')?>required>
                             Wyjście do kina Rialto – grupa filmowa
                         </label>
                         <label for="sroda9">
-                            <input type="radio" name="sroda" id="sroda9" value="sr9" required>
+                            <input type="radio" name="sroda" id="sroda9" value="sr9" <?php DisabledCheck($conn, $maxSroda, 'sroda', 'sr9')?>required>
                             Prelekcja o bezpieczeństwie – policja
                         </label>
                     </div>
@@ -154,39 +168,39 @@ if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], 
                     <p>Na jaki wykład chciałbyś pójść w Czwartek?</p>
                     <div class="group">
                         <label for="czwartek1">
-                            <input type="radio" name="czwartek" id="czwartek1" value="czw1" required>
+                            <input type="radio" name="czwartek" id="czwartek1" value="czw1" <?php DisabledCheck($conn, $maxCzwartek, 'czwartek', 'czw1')?>required>
                             <b style="color:blue;">Religijne&nbsp;-&nbsp;</b>Warsztaty medialne - Radio Em
                         </label>
                         <label for="czwartek2">
-                            <input type="radio" name="czwartek" id="czwartek2" value="czw2" required>
+                            <input type="radio" name="czwartek" id="czwartek2" value="czw2" <?php DisabledCheck($conn, $maxCzwartek, 'czwartek', 'czw2')?>required>
                             <b style="color:blue;">Religijne&nbsp;-&nbsp;</b>Potop biblijny a mit o Gilgameszu – wykład akademicki
                         </label>
                         <label for="czwartek3">
-                            <input type="radio" name="czwartek" id="czwartek3" value="czw3" required>
+                            <input type="radio" name="czwartek" id="czwartek3" value="czw3" <?php DisabledCheck($conn, $maxCzwartek, 'czwartek', 'czw3')?>required>
                             <b style="color:blue;">Religijne&nbsp;-&nbsp;</b>Panteon Górnośląski - zwiedzanie
                         </label>
                         <label for="czwartek4">
-                            <input type="radio" name="czwartek" id="czwartek4" value="czw4" required>
+                            <input type="radio" name="czwartek" id="czwartek4" value="czw4" <?php DisabledCheck($conn, $maxCzwartek, 'czwartek', 'czw4')?>required>
                             Uniwersytet Ekonomicznym - wykład promocyjny
                         </label>
                         <label for="czwartek5">
-                            <input type="radio" name="czwartek" id="czwartek5" value="czw5" required>
+                            <input type="radio" name="czwartek" id="czwartek5" value="czw5" <?php DisabledCheck($conn, $maxCzwartek, 'czwartek', 'czw5')?>required>
                             Wielka 4 thrashmetalu – radiowęzeł zaprasza
                         </label>
                         <label for="czwartek6">
-                            <input type="radio" name="czwartek" id="czwartek6" value="czw6" required>
+                            <input type="radio" name="czwartek" id="czwartek6" value="czw6" <?php DisabledCheck($conn, $maxCzwartek, 'czwartek', 'czw6')?>required>
                             Rozgrywki sportowe – sala gimnastyczna i sala fitness
                         </label>
                         <label for="czwarte7">
-                            <input type="radio" name="czwartek" id="czwartek7" value="czw7" required>
+                            <input type="radio" name="czwartek" id="czwartek7" value="czw7" <?php DisabledCheck($conn, $maxCzwartek, 'czwartek', 'czw7')?>required>
                             Stowarzyszenie Młodych Twórców – spotkanie
                         </label>
                         <label for="czwartek8">
-                            <input type="radio" name="czwartek" id="czwartek8" value="czw8" required>
+                            <input type="radio" name="czwartek" id="czwartek8" value="czw8" <?php DisabledCheck($conn, $maxCzwartek, 'czwartek', 'czw8')?>required>
                             Afganistan – spotkanie z weteranem wojny
                         </label>
                         <label for="czwartek9">
-                            <input type="radio" name="czwartek" id="czwartek9" value="czw9" required>
+                            <input type="radio" name="czwartek" id="czwartek9" value="czw9" <?php DisabledCheck($conn, $maxCzwartek, 'czwartek', 'czw9')?>required>
                             Prelekcja o bezpieczeństwie – policja
                         </label>
                     </div>
@@ -203,35 +217,35 @@ if (isset($_POST['dane'], $_POST['klasa'], $_POST['sroda'], $_POST['czwartek'], 
                     <p>Na jaki wykład chciałbyś pójść w Piątek?</p>
                     <div class="group">
                         <label for="piatek1">
-                            <input type="radio" name="piatek" id="piatek1" value="pt1" required>
+                            <input type="radio" name="piatek" id="piatek1" value="pt1" <?php DisabledCheck($conn, $maxPiatek, 'sroda', 'pt1')?>required>
                             <b style="color:blue;">Religijne&nbsp;-&nbsp;</b>Msza św. z nauką rekolekcyjną - krypta katedry
                         </label>
                         <label for="piatek2">
-                            <input type="radio" name="piatek" id="piatek2" value="pt2" required>
+                            <input type="radio" name="piatek" id="piatek2" value="pt2" <?php DisabledCheck($conn, $maxPiatek, 'sroda', 'pt2')?>required>
                             Dowody na istnienie Boga – wykład akademicki
                         </label>
                         <label for="piatek3">
-                            <input type="radio" name="piatek" id="piatek3" value="pt3" required>
+                            <input type="radio" name="piatek" id="piatek3" value="pt3" <?php DisabledCheck($conn, $maxPiatek, 'sroda', 'pt3')?>required>
                             Panteon Górnośląski - zwiedzanie
                         </label>
                         <label for="piatek4">
-                            <input type="radio" name="piatek" id="piatek4" value="pt4" required>
+                            <input type="radio" name="piatek" id="piatek4" value="pt4" <?php DisabledCheck($conn, $maxPiatek, 'sroda', 'pt4')?>required>
                             Komandosi Powstania Styczniowego „Żuawi Śmierci” – wykład historyczny
                         </label>
                         <label for="piatek5">
-                            <input type="radio" name="piatek" id="piatek5" value="pt5" required>
+                            <input type="radio" name="piatek" id="piatek5" value="pt5" <?php DisabledCheck($conn, $maxPiatek, 'sroda', 'pt5')?>required>
                             Rozgrywki sportowe – sala gimnastyczna i sala fitness
                         </label>
                         <label for="piatek6">
-                            <input type="radio" name="piatek" id="piatek6" value="pt6" required>
+                            <input type="radio" name="piatek" id="piatek6" value="pt6" <?php DisabledCheck($conn, $maxPiatek, 'sroda', 'pt6')?>required>
                             System informacji geograficznej – warsztaty
                         </label>
                         <label for="piatek7">
-                            <input type="radio" name="piatek" id="piatek7" value="pt7" required>
+                            <input type="radio" name="piatek" id="piatek7" value="pt7" <?php DisabledCheck($conn, $maxPiatek, 'sroda', 'pt7')?>required>
                             Wyjście do kina Rialto – grupa filmowa
                         </label>
                         <label for="piatek8">
-                            <input type="radio" name="piatek" id="piatek8" value="pt8" required>
+                            <input type="radio" name="piatek" id="piatek8" value="pt8" <?php DisabledCheck($conn, $maxPiatek, 'sroda', 'pt8')?>required>
                             Prelekcja o bezpieczeństwie – policja
                         </label>
                     </div>
